@@ -49,6 +49,13 @@ class DetailViewController: UIViewController {
         return label
     }()
     
+    private lazy var episodesLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.font = .systemFont(ofSize: 20, weight: .regular)
+        return label
+    }()
+    
     lazy var scrollView = UIScrollView.createWithVStack(
         spacing: 24,
         alignment: .fill,
@@ -58,7 +65,8 @@ class DetailViewController: UIViewController {
             nameLabel,
             genderLabel,
             statusLabel,
-            speciesLabel
+            speciesLabel,
+            episodesLabel
         ]
     )
     
@@ -83,11 +91,12 @@ class DetailViewController: UIViewController {
         title = "viewModel.character.name"
         
         setupScrollView()
-        setupImage()
+        setupCharacterImage()
         setupNameLabel()
         setupGenderLabel()
         setupStatusLabel()
         setupSpeciesLabel()
+        setupEpisodesLabel()
     }
     
     private func setupScrollView() {
@@ -100,13 +109,20 @@ class DetailViewController: UIViewController {
         )
     }
     
-    private func setupImage() {
+    private func setupCharacterImage() {
         characterImageContainer.addSubview(characterImage)
         
         characterImage.constrainHeight(constant: 270)
         characterImage.constrainWidth(constant: 270)
         characterImage.applyCornerRadius(135)
         characterImage.centerInSuperview()
+        
+        guard let characterImage = viewModel.character.image, let imageURL = URL(string: characterImage) else { return }
+        viewModel.fetchCharacterImage(from: imageURL) { [weak self] image in
+            DispatchQueue.main.async {
+                self?.characterImage.image = image
+            }
+        }
     }
     
     private func setupNameLabel() {
@@ -123,5 +139,14 @@ class DetailViewController: UIViewController {
     
     private func setupSpeciesLabel() {
         speciesLabel.text = "Species: \(viewModel.character.species ?? "-")"
+    }
+    
+    private func setupEpisodesLabel() {
+        let episodes = viewModel.character.episode?.count ?? 0
+        if episodes == 0 {
+            episodesLabel.isHidden = true
+        } else {
+            episodesLabel.text = "\(episodes < 2 ? "Episode" : "Episodes"): \(episodes)"
+        }
     }
 }

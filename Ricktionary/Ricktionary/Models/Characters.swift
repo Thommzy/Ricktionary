@@ -16,6 +16,7 @@ struct Character: Codable {
     let name: String?
     let status: String?
     let species: String?
+    let episode: [String]?
     let gender: String?
     let origin: Location?
     let location: Location?

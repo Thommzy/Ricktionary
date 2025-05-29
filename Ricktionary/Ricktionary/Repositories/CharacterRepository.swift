@@ -35,7 +35,16 @@ final class CharacterRepository: CharacterRepositoryProtocol {
         if productItemsPaginationData.next != nil {
             let req = try await client.getCharacters()
             let updatedData = characters + (req.results ?? [])
-            let sortedData = updatedData.sorted { $0.name?.lowercased() ?? "" < $1.name?.lowercased() ?? "" }
+            
+            // ✅ Remove duplicates using Set or Dictionary keyed by `id`
+            let uniqueCharactersDict = Dictionary(grouping: updatedData, by: { $0.id })
+            let uniqueCharacters = uniqueCharactersDict.compactMap { $0.value.first }
+
+            // ✅ Sort unique characters by name
+            let sortedData = uniqueCharacters.sorted {
+                $0.name?.lowercased() ?? "" < $1.name?.lowercased() ?? ""
+            }
+
             characters = sortedData
             productItemsPaginationData.page += 1
             return characters
@@ -43,4 +52,5 @@ final class CharacterRepository: CharacterRepositoryProtocol {
             return characters
         }
     }
+
 }
