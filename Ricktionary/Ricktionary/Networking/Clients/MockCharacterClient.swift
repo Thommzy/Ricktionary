@@ -6,3 +6,36 @@
 //
 
 import Foundation
+
+class MockCharacterClient: CharacterClientProtocol {
+    func getCharacters() async throws -> PaginatedDefaultResponse<Character> {
+        let mockCharacters: [Character] = [
+            .init(
+                id: 1,
+                name: "Rick Sanchez",
+                status: "Alive",
+                species: "Human",
+                gender: "Male",
+                origin: nil,
+                location: nil,
+                image: "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
+                created: "2017-11-04T18:48:46.250Z"
+            ),
+            .init(
+                id: 2,
+                name: "Tim Cook",
+                status: "Alive",
+                species: "Alien",
+                gender: "Male",
+                origin: nil,
+                location: nil,
+                image: "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
+                created: "2017-11-04T18:48:46.250Z"
+            )
+        ]
+        
+        return PaginatedDefaultResponse(
+            results: mockCharacters
+        )
+    }
+}

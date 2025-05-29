@@ -8,11 +8,34 @@
 import SwiftUI
 
 struct HomeView: View {
+    @StateObject var viewModel: HomeViewModel
+    
     var body: some View {
-        Text("Tim new")
+        NavigationView {
+            List(viewModel.characterList, id: \.id) { character in
+                NavigationLink(destination: DetailView(character: character)) {
+                    VStack(alignment: .leading) {
+                        Text(character.name ?? "Lord")
+                            .font(.headline)
+                        Text(character.status ?? "Lord")
+                            .font(.subheadline)
+                            .foregroundColor(.gray)
+                    }
+                }
+            }
+            .navigationTitle("Ricktionary")
+            .onAppear {
+                viewModel.getAllCharacters()
+            }
+        }
     }
 }
 
-#Preview {
-    HomeView()
+struct HomeView_Previews: PreviewProvider {
+    static var previews: some View {
+        let client = MockCharacterClient()
+        let repo = MockCharacterRepository()
+        HomeView(viewModel: HomeViewModel(client: client, repository: repo))
+    }
 }
+

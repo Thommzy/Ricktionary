@@ -6,3 +6,12 @@
 //
 
 import Foundation
+
+struct PaginatedDefaultResponse<T: Codable>: Codable {
+    var results: [T]?
+
+    enum CodingKeys: String, CodingKey {
+        case results
+    }
+}
+
