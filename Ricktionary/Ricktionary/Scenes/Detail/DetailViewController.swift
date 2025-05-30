@@ -112,10 +112,14 @@ class DetailViewController: UIViewController {
     private func setupCharacterImage() {
         characterImageContainer.addSubview(characterImage)
         
-        characterImage.constrainHeight(constant: 270)
-        characterImage.constrainWidth(constant: 270)
-        characterImage.applyCornerRadius(135)
-        characterImage.centerInSuperview()
+        characterImage.anchor(
+            top: characterImageContainer.topAnchor,
+            leading: characterImageContainer.leadingAnchor,
+            bottom: characterImageContainer.bottomAnchor,
+            trailing: characterImageContainer.trailingAnchor,
+            padding: .init(top: 5, left: 20, bottom: 5, right: 20)
+        )
+        characterImage.applyCornerRadius(10)
         
         guard let characterImage = viewModel.character.image, let imageURL = URL(string: characterImage) else { return }
         viewModel.fetchCharacterImage(from: imageURL) { [weak self] image in
@@ -142,11 +146,12 @@ class DetailViewController: UIViewController {
     }
     
     private func setupEpisodesLabel() {
-        let episodes = viewModel.character.episode?.count ?? 0
-        if episodes == 0 {
+        guard let count = viewModel.character.episode?.count, count > 0 else {
             episodesLabel.isHidden = true
-        } else {
-            episodesLabel.text = "\(episodes < 2 ? "Episode" : "Episodes"): \(episodes)"
+            return
         }
+
+        episodesLabel.isHidden = false
+        episodesLabel.text = "\(count == 1 ? "Episode" : "Episodes"): \(count)"
     }
 }

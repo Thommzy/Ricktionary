@@ -11,13 +11,7 @@ import SwiftUI
 struct RicktionaryApp: App {
     var body: some Scene {
         WindowGroup {
-            HomeView(viewModel: createViewModel())
+            ContentView()
         }
-    }
-
-    func createViewModel() -> HomeViewModel {
-        let client = CharacterClient()
-        let repository = CharacterRepository(client: client)
-        return HomeViewModel(client: client, repository: repository)
     }
 }

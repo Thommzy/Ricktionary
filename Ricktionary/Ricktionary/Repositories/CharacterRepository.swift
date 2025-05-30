@@ -36,11 +36,11 @@ final class CharacterRepository: CharacterRepositoryProtocol {
             let req = try await client.getCharacters()
             let updatedData = characters + (req.results ?? [])
             
-            // ✅ Remove duplicates using Set or Dictionary keyed by `id`
+            // Remove duplicates using Set or Dictionary keyed by `id`
             let uniqueCharactersDict = Dictionary(grouping: updatedData, by: { $0.id })
             let uniqueCharacters = uniqueCharactersDict.compactMap { $0.value.first }
 
-            // ✅ Sort unique characters by name
+            // Sort unique characters by name
             let sortedData = uniqueCharacters.sorted {
                 $0.name?.lowercased() ?? "" < $1.name?.lowercased() ?? ""
             }

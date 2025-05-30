@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
+    private let keychainService = KeychainService()
     @StateObject var viewModel: HomeViewModel
     
     var body: some View {
@@ -24,6 +25,7 @@ struct HomeView: View {
                 }
             }
             .navigationTitle("Ricktionary")
+
             .onAppear {
                 viewModel.getAllCharacters()
             }
