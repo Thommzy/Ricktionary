@@ -88,8 +88,7 @@ class DetailViewController: UIViewController {
     }
     
     private func setupViews() {
-        title = "viewModel.character.name"
-        
+
         setupScrollView()
         setupCharacterImage()
         setupNameLabel()
