@@ -8,39 +8,6 @@
 import XCTest
 @testable import Ricktionary
 
-// MARK: - Mocks
-
-class MockCredentialStore: CredentialStoreProtocol {
-    var storedUsername: String?
-    var storedPassword: String?
-
-    func save(username: String, password: String) -> Bool {
-        self.storedUsername = username
-        self.storedPassword = password
-        return true
-    }
-
-    func retrieveCredentials() -> (username: String, password: String)? {
-        guard let username = storedUsername, let password = storedPassword else { return nil }
-        return (username, password)
-    }
-
-    func clearCredentials() -> Bool {
-        storedUsername = nil
-        storedPassword = nil
-        return true
-    }
-}
-
-class MockBiometricAuth: BiometricAuthProtocol {
-    var shouldSucceed = true
-    var error: Error?
-
-    func authenticateUser(completion: @escaping (Bool, Error?) -> Void) {
-        completion(shouldSucceed, error)
-    }
-}
-
 final class LoginViewModelTests: XCTestCase {
     
     var credentialStore: MockCredentialStore!
@@ -97,14 +64,14 @@ final class LoginViewModelTests: XCTestCase {
     }
 
     func testLoginWithBiometrics_success_setsLoginState() {
-       _ = credentialStore.save(username: "BiometricUser", password: "securePass")
+       _ = credentialStore.save(username: "Thommzybaba", password: "securePass")
         biometricAuth.shouldSucceed = true
 
         let expectation = XCTestExpectation(description: "Biometric login completed")
 
         viewModel.loginWithBiometrics()
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-            XCTAssertEqual(self.viewModel.username, "BiometricUser")
+            XCTAssertEqual(self.viewModel.username, "Thommzybaba")
             XCTAssertEqual(self.viewModel.password, "securePass")
             XCTAssertTrue(self.viewModel.isLoggedIn)
             XCTAssertNil(self.viewModel.loginError)

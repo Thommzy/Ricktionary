@@ -150,7 +150,6 @@ class DetailViewController: UIViewController {
             return
         }
 
-        episodesLabel.isHidden = false
         episodesLabel.text = "\(count == 1 ? "Episode" : "Episodes"): \(count)"
     }
 }

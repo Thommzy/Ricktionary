@@ -35,7 +35,6 @@ final class LoginViewModel: ObservableObject {
         } else {
             loginError = "Invalid credentials."
         }
-        
     }
 
     func loginWithBiometrics() {

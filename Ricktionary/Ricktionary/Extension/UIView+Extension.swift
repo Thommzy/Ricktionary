@@ -61,11 +61,6 @@ extension UIView {
             .forEach { $0?.isActive = true }
     }
     
-    func constrainWidth(constant: CGFloat) {
-        translatesAutoresizingMaskIntoConstraints = false
-        widthAnchor.constraint(equalToConstant: constant).isActive = true
-    }
-    
     func constrainHeight(constant: CGFloat) {
         translatesAutoresizingMaskIntoConstraints = false
         heightAnchor.constraint(equalToConstant: constant).isActive = true

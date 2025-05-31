@@ -12,36 +12,6 @@ import Combine
 final class HomeViewModelTests: XCTestCase {
     var cancellables: Set<AnyCancellable> = []
 
-    // MARK: - Mocks
-
-    class MockClient: CharacterClientProtocol {
-        var response: PaginatedDefaultResponse<Character>
-
-        init(response: PaginatedDefaultResponse<Character>) {
-            self.response = response
-        }
-
-        func getCharacters() async throws -> PaginatedDefaultResponse<Character> {
-            return response
-        }
-    }
-
-    class MockRepository: CharacterRepositoryProtocol {
-        var _characters: [Character]
-
-        let client: CharacterClientProtocol
-
-        init(client: CharacterClientProtocol, characters: [Character] = []) {
-            self.client = client
-            self._characters = characters
-        }
-
-        func getCharacters(cached: Bool) async throws -> [Character] {
-            let response = try await client.getCharacters()
-            return response.results ?? []
-        }
-    }
-
     // MARK: - Test
 
     func testGetAllCharacters_ShouldPopulateCharacterList() async {

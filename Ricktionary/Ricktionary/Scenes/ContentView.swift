@@ -23,12 +23,6 @@ struct ContentView: View {
             LoginView(viewModel: loginViewModel)
         }
     }
-
-    func createHomeViewModel() -> HomeViewModel {
-        let client = CharacterClient()
-        let repo = CharacterRepository(client: client)
-        return HomeViewModel(client: client, repository: repo)
-    }
 }
 
 #Preview {

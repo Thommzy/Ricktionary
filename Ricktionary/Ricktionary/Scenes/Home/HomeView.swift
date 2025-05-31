@@ -16,9 +16,9 @@ struct HomeView: View {
             List(viewModel.characterList, id: \.id) { character in
                 NavigationLink(destination: DetailView(character: character)) {
                     VStack(alignment: .leading) {
-                        Text(character.name ?? "Lord")
+                        Text(character.name ?? "")
                             .font(.headline)
-                        Text(character.status ?? "Lord")
+                        Text(character.status ?? "")
                             .font(.subheadline)
                             .foregroundColor(.gray)
                     }
