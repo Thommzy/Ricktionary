@@ -19,8 +19,8 @@ jobs:
 
     - name: Clean build folder
       run: |
-        xcodebuild clean -project Ricky.xcodeproj -scheme Ricky -configuration Debug
+        xcodebuild clean -project Ricktionary/Ricktionary.xcodeproj -scheme Ricktionary -configuration Debug
 
     - name: Build the app
       run: |
-        xcodebuild build -project Ricky.xcodeproj -scheme Ricky -sdk iphonesimulator -configuration Debug
+        xcodebuild build -project Ricktionary/Ricktionary.xcodeproj -scheme Ricktionary -sdk iphonesimulator -configuration Debug
