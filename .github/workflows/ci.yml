@@ -29,9 +29,12 @@ jobs:
 
     - name: Run unit tests
       run: |
-        xcodebuild test \
-          -project Ricktionary/Ricktionary.xcodeproj \
-          -scheme Ricktionary \
-          -sdk iphonesimulator \
-          -destination 'platform=iOS Simulator,name=iPhone 14' \
-          -configuration Debug
+       xcodebuild test \
+       -project Ricktionary/Ricktionary.xcodeproj \
+       -scheme Ricktionary \
+       -sdk iphonesimulator \
+       -destination 'platform=iOS Simulator,OS=latest,name=iPhone 14' \
+       -configuration Debug \
+       -derivedDataPath build \
+       CODE_SIGNING_ALLOWED=NO
+
