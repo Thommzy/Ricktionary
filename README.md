@@ -74,7 +74,7 @@ open Ricktionary/Ricktionary.xcodeproj
 ### What's Covered
 
 - Unit tests for `LoginViewModel` and `HomeViewModel`  
-- Mocked dependencies such as `MockBiometricAuth`, `MockClient`, `MockCredentialStore`, `MockRepository`, and `APIService`  
+- Mocked dependencies such as `MockBiometricAuth`, `MockClient`, `MockCredentialStore`, and `MockRepository`  
 - Validation of authentication logic and data fetching  
 - High test coverage for the logic layer
 
