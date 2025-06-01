@@ -24,11 +24,11 @@
 
 ---
 
-## Modules
+## Package
 
 ### ImageLoader
 
-A lightweight and reusable Swift module for asynchronously loading and displaying remote images in SwiftUI.
+A lightweight and reusable Swift Package for asynchronously loading and displaying remote images in SwiftUI.
 
 #### Features:
 - Downloads images from a remote URL using `Data(contentsOf:)`
@@ -101,9 +101,9 @@ open Ricktionary/Ricktionary.xcodeproj
 xcrun simctl list
 ```
 
-### Module Import Issues?
+### Package Import Issues?
 
-- Confirm that the `ImageLoader` module is properly linked  
+- Confirm that the `ImageLoader` Package is properly linked  
 - Clean the build folder:
 
 ```bash
