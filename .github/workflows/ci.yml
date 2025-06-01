@@ -33,7 +33,7 @@ jobs:
        -project Ricktionary/Ricktionary.xcodeproj \
        -scheme Ricktionary \
        -sdk iphonesimulator \
-       -destination 'platform=iOS Simulator,OS=latest,name=iPhone 14' \
+       -destination 'platform=iOS Simulator,OS=latest,name=iPhone 16 Pro' \
        -configuration Debug \
        -derivedDataPath build \
        CODE_SIGNING_ALLOWED=NO
