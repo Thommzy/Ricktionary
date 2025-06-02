@@ -84,9 +84,10 @@ open Ricktionary/Ricktionary.xcodeproj
 
 ## How to Use
 
-1. Launch the app  
-2. Browse the list of *Rick and Morty* characters  
-3. Tap on a character to view detailed information
+1. Launch the app
+2. Log in with Username and Password / Log in with FaceID
+3. Browse the list of *Rick and Morty* characters  
+4. Tap on a character to view detailed information
 
 ---
 
